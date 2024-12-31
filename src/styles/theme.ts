@@ -5,7 +5,7 @@ const theme: DefaultTheme = {
     primary: '#1A73E8', // Blue
     secondary: '#FF5733', // Orange
     background: '#F9F9F9', // Light Gray
-    text: '#333333', // Dark Gray
+    text: '#555555', // Dark Gray
   },
   fonts: {
     heading: "'Roboto', sans-serif",
