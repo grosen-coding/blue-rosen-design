@@ -12,7 +12,10 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
     /* line-height: 1.6; */
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevents horizontal scrollbars */
+  height: 100%; /* Ensures full-height content */
   }
 
   h1, h2, h3, h4, h5, h6 {

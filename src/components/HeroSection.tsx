@@ -10,8 +10,8 @@ const HeroContainer = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 110vh; /* Full viewport height minus navbar */
-  overflow: hidden; /* Ensure video doesn't overflow */
+  height: calc(100vh - 7rem); /* Adjust based on navbar height */
+  overflow: hidden; /* Prevents video overflow */
   color: white;
   padding: 1rem;
   background-color: black; /* Fallback background */
@@ -70,7 +70,6 @@ const HeroButton = styled(motion.a)`
   }
 `;
 
-// Animation Variants
 const videoVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1 } },
@@ -98,7 +97,6 @@ const HeroSection = () => {
   const fullSetInStoneText = 'Set in Stone.';
   const [setInStoneVisible, setSetInStoneVisible] = useState(false);
 
-  // Subtitle Part 1: "Quality..."
   useEffect(() => {
     if (!subtitleVisible) return;
     let timeout: ReturnType<typeof setTimeout>;
@@ -110,7 +108,6 @@ const HeroSection = () => {
     return () => clearTimeout(timeout);
   }, [qualityText, fullQualityText, subtitleVisible]);
 
-  // Subtitle Part 2: "Set in Stone."
   useEffect(() => {
     if (!setInStoneVisible) return;
     if (qualityText.length < fullQualityText.length) return;
@@ -131,13 +128,11 @@ const HeroSection = () => {
     setInStoneVisible,
   ]);
 
-  // Delay Subtitle Visibility After Title Animation
   useEffect(() => {
-    const delay = setTimeout(() => setSubtitleVisible(true), 1500); // Delay for title animation
+    const delay = setTimeout(() => setSubtitleVisible(true), 1500);
     return () => clearTimeout(delay);
   }, []);
 
-  // Delay "Set in Stone" Visibility 2s After Quality Text is Fully Visible
   useEffect(() => {
     if (fullQualityText.length === qualityText.length) {
       const delay = setTimeout(() => setSetInStoneVisible(true), 900);
@@ -147,7 +142,6 @@ const HeroSection = () => {
 
   return (
     <HeroContainer>
-      {/* Video Background */}
       <VideoBackground
         autoPlay
         loop
@@ -161,7 +155,6 @@ const HeroSection = () => {
         Your browser does not support the video tag.
       </VideoBackground>
 
-      {/* Content */}
       <HeroSubtitle>
         <motion.span>{qualityText}</motion.span>
         <HighlightedText color="red">

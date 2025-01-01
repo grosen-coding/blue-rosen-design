@@ -89,9 +89,10 @@ const TitleSide = styled.div<{ isScrolled: boolean }>`
 
 
   h1 {
-    font-size: ${({ isScrolled }) => (isScrolled ? '3rem' : '2rem')};
+    font-size: ${({ isScrolled }) => (isScrolled ? '2.2rem' : '2rem')};
     margin: 0;
         text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
 
   }
 
@@ -129,13 +130,14 @@ const NavLinks = styled.div`
     text-transform: uppercase;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    transition: all 0.3s ease-in-out;
     position: relative;
+    transition: all 0.3s ease-in-out; /* Smooth transition for color and transform */
+    overflow: hidden; /* Prevent pseudo-elements from affecting layout */
 
     &:hover {
       background-color: ${({ theme }) => theme.colors.secondary};
       color: #FFD700;
-      transform: scale(1.1);
+      transform: scale(1.1); /* Scale smoothly */
       font-weight: bold;
     }
 
@@ -147,17 +149,17 @@ const NavLinks = styled.div`
       content: '';
       position: absolute;
       bottom: 0;
-      width: 0%;
+      left: 50%; /* Center align */
+      width: 0%; /* Start with no width */
       height: 2px;
       background-color: ${({ theme }) => theme.colors.secondary};
-
+      transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+      transform: translateX(-50%);
     }
 
     &:hover::after {
       width: 80%;
-      left: 10%;
-      transition: width 0.3s;
-      transform-origin: center;
+      left: 50%;
     }
   }
 
@@ -192,7 +194,7 @@ const Navbar = () => {
         />
       </Link>
       </LogoSide>
-      <TitleSide>
+      <TitleSide isScrolled={isScrolled}>
       <Link to="/">
         <h1>Blue Rose</h1>
         <h3>Design</h3>
